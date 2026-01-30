@@ -105,6 +105,7 @@
         .date-main {
             font-size: 18px;
             font-weight: 600;
+            color: var(--text);
         }
 
         .date-sub {
@@ -145,6 +146,7 @@
             font-size: 20px;
             font-weight: 700;
             margin-bottom: 4px;
+            color: var(--text);
         }
 
         .workout-meta {
@@ -177,6 +179,7 @@
             font-size: 15px;
             font-weight: 600;
             flex: 1;
+            color: var(--text);
         }
 
         .exercise-prescription {
@@ -796,105 +799,8 @@
             gymLog: {},
             bodyWeight: {}
         };
-        
-        // Test data for first 9 workouts
-        const TEST_DATA = {
-            gymLog: {
-                // Day 1 - Legs #1 (Jan 30)
-                '2026-01-30': {
-                    ex0_name: 'Standing Calf Raise', ex0_weight: 70, ex0_feeling: 'okay',
-                    ex1_name: 'Back Squat', ex1_weight: 100, ex1_feeling: 'hard',
-                    ex2_name: 'Paused Back Squat', ex2_weight: 75, ex2_feeling: 'hard',
-                    ex3_name: 'Romanian Deadlift', ex3_weight: 80, ex3_feeling: 'okay',
-                    ex4_name: 'Walking DB Lunges', ex4_weight: 20, ex4_feeling: 'okay',
-                    ex5_name: 'Seated Leg Curl', ex5_weight: 45, ex5_feeling: 'light',
-                    ex6_name: 'Side Plank', ex6_weight: 0, ex6_feeling: 'okay'
-                },
-                // Day 2 - Push #1 (Jan 31)
-                '2026-01-31': {
-                    ex0_name: 'Barbell Bench Press', ex0_weight: 80, ex0_feeling: 'okay',
-                    ex1_name: 'Bench Press (Legs Up)', ex1_weight: 60, ex1_feeling: 'hard',
-                    ex2_name: 'Arnold Press', ex2_weight: 20, ex2_feeling: 'okay',
-                    ex3_name: 'DB Chest Fly', ex3_weight: 14, ex3_feeling: 'light',
-                    ex4_name: 'DB Lateral Raise', ex4_weight: 10, ex4_feeling: 'okay',
-                    ex5_name: 'Cable Pressdown', ex5_weight: 25, ex5_feeling: 'okay',
-                    ex6_name: 'OH Cable Extension', ex6_weight: 20, ex6_feeling: 'light'
-                },
-                // Day 3 - Pull #1 (Feb 1)
-                '2026-02-01': {
-                    ex0_name: 'Lat Pulldown', ex0_weight: 60, ex0_feeling: 'okay',
-                    ex1_name: 'Chest-Supported Row', ex1_weight: 35, ex1_feeling: 'okay',
-                    ex2_name: 'Pullover Machine', ex2_weight: 40, ex2_feeling: 'light',
-                    ex3_name: 'Face Pull', ex3_weight: 20, ex3_feeling: 'okay',
-                    ex4_name: 'EZ-Bar Curl', ex4_weight: 30, ex4_feeling: 'hard',
-                    ex5_name: 'Spider Curl', ex5_weight: 10, ex5_feeling: 'okay'
-                },
-                // Day 4 - Legs #2 (Feb 2)
-                '2026-02-02': {
-                    ex0_name: 'Conventional Deadlift', ex0_weight: 120, ex0_feeling: 'hard',
-                    ex1_name: '45° Leg Press', ex1_weight: 180, ex1_feeling: 'okay',
-                    ex2_name: 'Hip Extension', ex2_weight: 50, ex2_feeling: 'okay',
-                    ex3_name: 'Lying Leg Curl', ex3_weight: 40, ex3_feeling: 'okay',
-                    ex4_name: 'Leg Extension', ex4_weight: 55, ex4_feeling: 'light',
-                    ex5_name: 'Seated Calf Raise', ex5_weight: 60, ex5_feeling: 'okay',
-                    ex6_name: 'Cable Crunch', ex6_weight: 35, ex6_feeling: 'light'
-                },
-                // Day 5 - Push #2 (Feb 3)
-                '2026-02-03': {
-                    ex0_name: 'Incline Barbell Bench', ex0_weight: 70, ex0_feeling: 'okay',
-                    ex1_name: 'DB Shoulder Press', ex1_weight: 22, ex1_feeling: 'hard',
-                    ex2_name: 'EZ French Press', ex2_weight: 25, ex2_feeling: 'okay',
-                    ex3_name: 'Pec Deck', ex3_weight: 50, ex3_feeling: 'okay',
-                    ex4_name: 'Lateral Raise Machine', ex4_weight: 30, ex4_feeling: 'okay',
-                    ex5_name: 'Front Raise', ex5_weight: 10, ex5_feeling: 'light',
-                    ex6_name: 'Diamond Push-ups', ex6_weight: 0, ex6_feeling: 'hard'
-                },
-                // Day 6 - Pull #2 (Feb 4)
-                '2026-02-04': {
-                    ex0_name: 'Single-Arm Lat Pulldown', ex0_weight: 30, ex0_feeling: 'okay',
-                    ex1_name: 'Weighted Pull-ups', ex1_weight: 10, ex1_feeling: 'hard',
-                    ex2_name: 'Kroc Row', ex2_weight: 32, ex2_feeling: 'okay',
-                    ex3_name: 'DB Shrugs', ex3_weight: 30, ex3_feeling: 'light',
-                    ex4_name: 'Reverse Pec Deck', ex4_weight: 45, ex4_feeling: 'okay',
-                    ex5_name: 'Seated DB Curl', ex5_weight: 12, ex5_feeling: 'okay'
-                },
-                // Day 7 - Legs #1 cycle 2 (Feb 5)
-                '2026-02-05': {
-                    ex0_name: 'Standing Calf Raise', ex0_weight: 75, ex0_feeling: 'okay',
-                    ex1_name: 'Back Squat', ex1_weight: 105, ex1_feeling: 'okay',
-                    ex2_name: 'Paused Back Squat', ex2_weight: 77.5, ex2_feeling: 'okay',
-                    ex3_name: 'Romanian Deadlift', ex3_weight: 85, ex3_feeling: 'okay',
-                    ex4_name: 'Walking DB Lunges', ex4_weight: 22, ex4_feeling: 'okay',
-                    ex5_name: 'Seated Leg Curl', ex5_weight: 50, ex5_feeling: 'okay',
-                    ex6_name: 'Side Plank', ex6_weight: 0, ex6_feeling: 'okay'
-                },
-                // Day 8 - Push #1 cycle 2 (Feb 6)
-                '2026-02-06': {
-                    ex0_name: 'Barbell Bench Press', ex0_weight: 82.5, ex0_feeling: 'okay',
-                    ex1_name: 'Bench Press (Legs Up)', ex1_weight: 62.5, ex1_feeling: 'okay',
-                    ex2_name: 'Arnold Press', ex2_weight: 22, ex2_feeling: 'okay',
-                    ex3_name: 'DB Chest Fly', ex3_weight: 16, ex3_feeling: 'okay',
-                    ex4_name: 'DB Lateral Raise', ex4_weight: 12, ex4_feeling: 'hard',
-                    ex5_name: 'Cable Pressdown', ex5_weight: 27.5, ex5_feeling: 'okay',
-                    ex6_name: 'OH Cable Extension', ex6_weight: 22.5, ex6_feeling: 'okay'
-                },
-                // Day 9 - Pull #1 cycle 2 (Feb 7)
-                '2026-02-07': {
-                    ex0_name: 'Lat Pulldown', ex0_weight: 65, ex0_feeling: 'okay',
-                    ex1_name: 'Chest-Supported Row', ex1_weight: 37.5, ex1_feeling: 'okay',
-                    ex2_name: 'Pullover Machine', ex2_weight: 45, ex2_feeling: 'okay',
-                    ex3_name: 'Face Pull', ex3_weight: 22.5, ex3_feeling: 'okay',
-                    ex4_name: 'EZ-Bar Curl', ex4_weight: 32.5, ex4_feeling: 'okay',
-                    ex5_name: 'Spider Curl', ex5_weight: 12, ex5_feeling: 'hard'
-                }
-            },
-            bodyWeight: {
-                '2026-01-27': 78.5,
-                '2026-02-03': 78.2
-            }
-        };
 
-        let currentDate = '2026-02-09'; // Set to Feb 9 for testing (Legs #2, after first rest)
+        let currentDate = new Date().toISOString().split('T')[0];
 
         // Program Configuration - DENSITY PROTOCOL
         const PROGRAM_START = '2026-01-30'; // Friday, Legs #1
@@ -1087,11 +993,1540 @@
             if (saved) {
                 data = JSON.parse(saved);
             }
-            // Merge test data if no gym logs exist
-            if (Object.keys(data.gymLog || {}).length === 0) {
-                data.gymLog = { ...TEST_DATA.gymLog };
-                data.bodyWeight = { ...TEST_DATA.bodyWeight };
-                saveData();
+        }
+
+        function saveData() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+
+        // ========== NAVIGATION ==========
+        function changeDate(delta) {
+            const d = new Date(currentDate + 'T12:00:00');
+            d.setDate(d.getDate() + delta);
+            currentDate = d.toISOString().split('T')[0];
+            render();
+        }
+
+        function goToToday() {
+            currentDate = new Date().toISOString().split('T')[0];
+            render();
+        }
+
+        function switchPanel(panel) {
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            
+            document.getElementById(panel + 'Panel').classList.add('active');
+            document.querySelector(`.nav-item[onclick="switchPanel('${panel}')"]`).classList.add('active');
+            
+            if (panel === 'weight') renderWeightPanel();
+            if (panel === 'history') renderHistoryPanel();
+        }
+
+        // ========== HELPERS ==========
+        function getCurrentBlock(dateStr) {
+            const date = new Date(dateStr + 'T12:00:00');
+            const startDate = new Date(PROGRAM_START + 'T00:00:00');
+            
+            // Before program starts
+            if (date < startDate) return 'pre';
+            
+            for (const [key, block] of Object.entries(GYM_PROGRAM.blocks)) {
+                const start = new Date(block.start + 'T00:00:00');
+                const end = new Date(block.end + 'T23:59:59');
+                if (date >= start && date <= end) return key;
+            }
+            
+            return 'peak';
+        }
+        
+        function isRestDay(dateStr) {
+            // Explicit rest days
+            if (REST_DAYS.includes(dateStr)) return true;
+            
+            // Deload period
+            const blockKey = getCurrentBlock(dateStr);
+            if (blockKey === 'deload') return true;
+            
+            // Polish phase: only Mon/Tue/Thu/Sat are training days
+            if (blockKey === 'polish') {
+                const dayOfWeek = new Date(dateStr + 'T12:00:00').getDay();
+                return !POLISH_SCHEDULE[dayOfWeek];
+            }
+            
+            return false;
+        }
+        
+        function countTrainingDays(fromDate, toDate) {
+            // Count training days between two dates (excluding rest days)
+            let count = 0;
+            const start = new Date(fromDate + 'T12:00:00');
+            const end = new Date(toDate + 'T12:00:00');
+            const current = new Date(start);
+            
+            while (current < end) {
+                const dateStr = current.toISOString().split('T')[0];
+                if (!isRestDay(dateStr)) {
+                    count++;
+                }
+                current.setDate(current.getDate() + 1);
+            }
+            return count;
+        }
+
+        function getWorkout(dateStr) {
+            const blockKey = getCurrentBlock(dateStr);
+            
+            if (blockKey === 'pre') {
+                const startDate = new Date(PROGRAM_START + 'T12:00:00');
+                const currentDate = new Date(dateStr + 'T12:00:00');
+                const daysUntil = Math.ceil((startDate - currentDate) / (1000 * 60 * 60 * 24));
+                return { 
+                    isRest: true, 
+                    name: 'Program Starts Soon', 
+                    message: `DENSITY PROTOCOL begins Jan 30. ${daysUntil} day${daysUntil !== 1 ? 's' : ''} to go.`
+                };
+            }
+            
+            if (blockKey === 'deload') {
+                return { 
+                    isRest: true, 
+                    name: 'Strategic Deload', 
+                    message: 'Yosemite + Spring Break. CNS recovery. Hike, move, enjoy guilt-free!'
+                };
+            }
+            
+            if (isRestDay(dateStr)) {
+                return { isRest: true, name: 'Rest Day' };
+            }
+            
+            // Polish phase uses fixed day-of-week schedule
+            if (blockKey === 'polish') {
+                const dayOfWeek = new Date(dateStr + 'T12:00:00').getDay();
+                const workoutKey = POLISH_SCHEDULE[dayOfWeek];
+                return BLOCK1_WORKOUTS[workoutKey]; // Polish uses Block 1 intensity (RPE 7-8)
+            }
+            
+            // Count training days from program start to get position in LPPLPP cycle
+            const trainingDayNum = countTrainingDays(PROGRAM_START, dateStr);
+            const cyclePosition = trainingDayNum % 6;
+            const workoutKey = WORKOUT_CYCLE[cyclePosition].key;
+            
+            // Select workout bank based on block
+            const workouts = (blockKey === 'block1') ? BLOCK1_WORKOUTS : BLOCK2_WORKOUTS;
+            
+            return workouts[workoutKey];
+        }
+
+        function getPrevWeight(exerciseName) {
+            const logs = data.gymLog || {};
+            const dates = Object.keys(logs).filter(d => d < currentDate).sort().reverse();
+            
+            for (const date of dates) {
+                const log = logs[date];
+                for (const key of Object.keys(log)) {
+                    if (key.endsWith('_name') && log[key] === exerciseName) {
+                        const idx = key.replace('_name', '');
+                        if (log[idx + '_weight']) {
+                            return { 
+                                weight: log[idx + '_weight'], 
+                                date,
+                                feeling: log[idx + '_feeling'] || null
+                            };
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        function getMondayOfWeek(dateStr) {
+            const d = new Date(dateStr + 'T12:00:00');
+            const day = d.getDay();
+            const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+            d.setDate(diff);
+            return d.toISOString().split('T')[0];
+        }
+        
+        function getTrainingDayLabel(dateStr) {
+            const blockKey = getCurrentBlock(dateStr);
+            if (blockKey === 'pre' || isRestDay(dateStr)) return null;
+            
+            // Count from block start
+            const block = GYM_PROGRAM.blocks[blockKey];
+            if (!block) return null;
+            
+            const trainingDayInBlock = countTrainingDays(block.start, dateStr) + 1;
+            return `Day ${trainingDayInBlock}`;
+        }
+
+        // ========== RENDERING ==========
+        function render() {
+            const blockKey = getCurrentBlock(currentDate);
+            const block = GYM_PROGRAM.blocks[blockKey];
+            const workout = getWorkout(currentDate);
+            
+            // Update header
+            let blockName = block?.name || 'Peak Display';
+            if (blockKey === 'pre') blockName = 'Starts Jan 30';
+            document.getElementById('currentBlock').textContent = blockName;
+            
+            // Update date
+            const date = new Date(currentDate + 'T12:00:00');
+            document.getElementById('dateMain').textContent = date.toLocaleDateString('en-US', {
+                weekday: 'long', month: 'short', day: 'numeric'
+            });
+            
+            let dateSub = '';
+            if (workout.isRest) {
+                if (blockKey === 'pre') {
+                    dateSub = '⏳ ' + workout.name;
+                } else if (blockKey === 'deload') {
+                    dateSub = '🏔️ Deload';
+                } else {
+                    dateSub = '🛌 Rest Day';
+                }
+            } else {
+                const dayLabel = getTrainingDayLabel(currentDate);
+                dateSub = `${dayLabel ? dayLabel + ' • ' : ''}${workout.name}`;
+            }
+            document.getElementById('dateSub').textContent = dateSub;
+            
+            // Render workout
+            const content = document.getElementById('workoutContent');
+            if (workout.isRest) {
+                content.innerHTML = renderRestDay(workout);
+                document.getElementById('statsBar').style.display = 'none';
+            } else {
+                content.innerHTML = renderWorkout(workout);
+                document.getElementById('statsBar').style.display = 'flex';
+                updateStats(workout);
+            }
+        }
+
+        function renderRestDay(workout) {
+            return `
+                <div class="workout-card">
+                    <div class="rest-day">
+                        <div class="rest-icon">${workout.message ? '🏔️' : '😴'}</div>
+                        <div class="rest-title">${workout.name}</div>
+                        <div class="rest-message">${workout.message || 'Recovery is part of the process. Rest, hydrate, and prepare for tomorrow.'}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderWorkout(workout) {
+            const savedLog = data.gymLog?.[currentDate] || {};
+            
+            let exercisesHtml = workout.exercises.map((ex, idx) => {
+                const savedWeight = savedLog[`ex${idx}_weight`] || '';
+                const savedFeeling = savedLog[`ex${idx}_feeling`] || '';
+                const prev = getPrevWeight(ex.name);
+                
+                // Previous weight and feeling display
+                let prevHtml = '';
+                if (prev) {
+                    let weightInfo = `Last: ${prev.weight}lbs`;
+                    if (savedWeight) {
+                        const diff = parseFloat(savedWeight) - parseFloat(prev.weight);
+                        if (diff > 0) weightInfo = `<span class="prev-weight up">↑ +${diff}lbs</span>`;
+                        else if (diff < 0) weightInfo = `<span class="prev-weight down">↓ ${diff}lbs</span>`;
+                        else weightInfo = `<span class="prev-weight">= ${prev.weight}lbs</span>`;
+                    } else {
+                        weightInfo = `<span class="prev-weight">Last: ${prev.weight}lbs</span>`;
+                    }
+                    
+                    const feelingBadge = prev.feeling 
+                        ? `<span class="prev-feeling ${prev.feeling}">${prev.feeling}</span>` 
+                        : '';
+                    
+                    prevHtml = `<div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px;">${weightInfo}${feelingBadge}</div>`;
+                }
+                
+                // Feeling button state
+                const feelingClass = savedFeeling ? savedFeeling : '';
+                const feelingText = savedFeeling ? savedFeeling : '—';
+                
+                return `
+                    <div class="exercise-item">
+                        <div class="exercise-header">
+                            <div>
+                                <div class="exercise-name">${ex.name}</div>
+                                ${ex.notes ? `<div class="exercise-notes">${ex.notes}</div>` : ''}
+                            </div>
+                            <div class="exercise-prescription">
+                                ${ex.sets}×${ex.reps}<br>
+                                <span style="opacity:0.7">RPE ${ex.rpe}</span>
+                            </div>
+                        </div>
+                        <div class="exercise-input-row">
+                            <div class="weight-input-group">
+                                <input type="number" class="weight-input" 
+                                    value="${savedWeight}" 
+                                    placeholder="0"
+                                    onchange="saveWeight(${idx}, this.value, '${ex.name}')"
+                                    inputmode="decimal">
+                                <span class="weight-unit">lbs</span>
+                            </div>
+                            <button class="done-check ${feelingClass}" onclick="cycleFeeling(${idx}, this, '${ex.name}')">
+                                ${feelingText}
+                            </button>
+                        </div>
+                        ${prevHtml ? `<div style="margin-top:8px;">${prevHtml}</div>` : ''}
+                    </div>
+                `;
+            }).join('');
+            
+            return `
+                <div class="workout-card">
+                    <div class="workout-title">${workout.name}</div>
+                    <div class="workout-meta">⏱ ${workout.time} • ${workout.exercises.length} exercises</div>
+                    <div class="exercise-list">${exercisesHtml}</div>
+                </div>
+            `;
+        }
+
+        function updateStats(workout) {
+            const savedLog = data.gymLog?.[currentDate] || {};
+            
+            // Sets completed (exercise is done if it has a feeling)
+            let totalSets = 0;
+            let doneSets = 0;
+            workout.exercises.forEach((ex, idx) => {
+                totalSets += ex.sets;
+                if (savedLog[`ex${idx}_feeling`]) doneSets += ex.sets;
+            });
+            document.getElementById('setsCompleted').textContent = `${doneSets}/${totalSets}`;
+            
+            // Session time
+            const time = workout.time?.split('-')[0] || '0';
+            document.getElementById('sessionTime').textContent = `~${time} min`;
+            
+            // Week progress - count completed training days this week
+            const monday = getMondayOfWeek(currentDate);
+            let weekDone = 0;
+            let weekTotal = 0;
+            
+            for (let i = 0; i < 7; i++) {
+                const d = new Date(monday + 'T12:00:00');
+                d.setDate(d.getDate() + i);
+                const dateStr = d.toISOString().split('T')[0];
+                
+                if (!isRestDay(dateStr) && getCurrentBlock(dateStr) !== 'pre') {
+                    weekTotal++;
+                    const log = data.gymLog?.[dateStr] || {};
+                    const hasCompleted = Object.keys(log).some(k => k.endsWith('_feeling') && log[k]);
+                    if (hasCompleted) weekDone++;
+                }
+            }
+            document.getElementById('weekProgress').textContent = `${weekDone}/${weekTotal}`;
+        }
+
+        // ========== SAVING ==========
+        function saveWeight(idx, value, name) {
+            if (!data.gymLog) data.gymLog = {};
+            if (!data.gymLog[currentDate]) data.gymLog[currentDate] = {};
+            
+            data.gymLog[currentDate][`ex${idx}_weight`] = value;
+            data.gymLog[currentDate][`ex${idx}_name`] = name;
+            saveData();
+            render();
+        }
+
+        function cycleFeeling(idx, btn, name) {
+            if (!data.gymLog) data.gymLog = {};
+            if (!data.gymLog[currentDate]) data.gymLog[currentDate] = {};
+            
+            const current = data.gymLog[currentDate][`ex${idx}_feeling`] || '';
+            const cycle = ['', 'hard', 'okay', 'light'];
+            const currentIndex = cycle.indexOf(current);
+            const nextIndex = (currentIndex + 1) % cycle.length;
+            const next = cycle[nextIndex];
+            
+            data.gymLog[currentDate][`ex${idx}_feeling`] = next;
+            data.gymLog[currentDate][`ex${idx}_name`] = name;
+            
+            // Update button appearance
+            btn.className = 'done-check' + (next ? ' ' + next : '');
+            btn.textContent = next || '—';
+            
+            saveData();
+            updateStats(getWorkout(currentDate));
+        }
+
+        // ========== WEIGHT PANEL ==========
+        function renderWeightPanel() {
+            // Get current week's Monday for weigh-in
+            const monday = getMondayOfWeek(currentDate);
+            const bwValue = data.bodyWeight?.[monday] || '';
+            
+            document.getElementById('bwInput').value = bwValue;
+            document.getElementById('bwDate').textContent = `Week of ${new Date(monday + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`;
+            
+            // Calculate trend
+            const weeks = Object.keys(data.bodyWeight || {}).sort().reverse();
+            if (weeks.length >= 2 && bwValue) {
+                const prevWeek = weeks.find(w => w < monday);
+                if (prevWeek) {
+                    const diff = (bwValue - data.bodyWeight[prevWeek]).toFixed(1);
+                    const trend = document.getElementById('bwTrend');
+                    if (diff > 0) {
+                        trend.textContent = `+${diff} lbs`;
+                        trend.className = 'trend-value up';
+                    } else if (diff < 0) {
+                        trend.textContent = `${diff} lbs`;
+                        trend.className = 'trend-value down';
+                    } else {
+                        trend.textContent = '0 lbs';
+                        trend.className = 'trend-value';
+                    }
+                }
+            } else {
+                document.getElementById('bwTrend').textContent = '--';
+            }
+            
+            // History
+            const history = document.getElementById('bwHistory');
+            const sortedWeeks = Object.keys(data.bodyWeight || {}).sort().reverse().slice(0, 8);
+            history.innerHTML = sortedWeeks.map(week => `
+                <div class="bw-history-item">
+                    <div class="bw-history-date">${new Date(week + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</div>
+                    <div class="bw-history-value">${data.bodyWeight[week]} lbs</div>
+                </div>
+            `).join('');
+            
+            // Lifting progress
+            const progress = document.getElementById('liftingProgress');
+            const exerciseProgress = calculateLiftingProgress();
+            
+            if (exerciseProgress.length === 0) {
+                progress.innerHTML = '<div class="empty-state"><div class="empty-icon">📊</div>Log some workouts to see progress</div>';
+            } else {
+                progress.innerHTML = exerciseProgress.map(p => `
+                    <div class="progress-item">
+                        <div class="progress-exercise">${p.name}</div>
+                        <div class="progress-change ${p.change > 0 ? 'positive' : p.change < 0 ? 'negative' : ''}">
+                            ${p.change > 0 ? '+' : ''}${p.change} lbs
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function saveBodyWeight() {
+            const value = document.getElementById('bwInput').value;
+            if (!value) return;
+            
+            const monday = getMondayOfWeek(currentDate);
+            if (!data.bodyWeight) data.bodyWeight = {};
+            data.bodyWeight[monday] = parseFloat(value);
+            saveData();
+            renderWeightPanel();
+        }
+
+        function calculateLiftingProgress() {
+            const logs = data.gymLog || {};
+            const dates = Object.keys(logs).sort().reverse();
+            
+            // Get exercises and their latest weights
+            const exerciseData = {};
+            
+            dates.forEach(date => {
+                const log = logs[date];
+                Object.keys(log).forEach(key => {
+                    if (key.endsWith('_name')) {
+                        const name = log[key];
+                        const idx = key.replace('_name', '');
+                        const weight = log[idx + '_weight'];
+                        
+                        if (weight && !exerciseData[name]) {
+                            exerciseData[name] = { latest: null, previous: null };
+                        }
+                        
+                        if (weight) {
+                            if (!exerciseData[name].latest) {
+                                exerciseData[name].latest = parseFloat(weight);
+                            } else if (!exerciseData[name].previous) {
+                                exerciseData[name].previous = parseFloat(weight);
+                            }
+                        }
+                    }
+                });
+            });
+            
+            // Calculate changes
+            return Object.entries(exerciseData)
+                .filter(([_, d]) => d.latest && d.previous)
+                .map(([name, d]) => ({
+                    name,
+                    change: (d.latest - d.previous).toFixed(1)
+                }))
+                .sort((a, b) => Math.abs(b.change) - Math.abs(a.change))
+                .slice(0, 8);
+        }
+
+        // ========== HISTORY PANEL ==========
+        function renderHistoryPanel() {
+            // Week grid
+            const monday = getMondayOfWeek(currentDate);
+            const today = new Date().toISOString().split('T')[0];
+            const weekGrid = document.getElementById('weekGrid');
+            
+            let weekHtml = '';
+            for (let i = 0; i < 7; i++) {
+                const d = new Date(monday + 'T12:00:00');
+                d.setDate(d.getDate() + i);
+                const dateStr = d.toISOString().split('T')[0];
+                const workout = getWorkout(dateStr);
+                const log = data.gymLog?.[dateStr] || {};
+                const hasCompleted = Object.keys(log).some(k => k.endsWith('_feeling') && log[k]);
+                const isRest = isRestDay(dateStr) || getCurrentBlock(dateStr) === 'pre';
+                
+                let classes = 'week-day';
+                if (dateStr === today) classes += ' today';
+                if (isRest) classes += ' rest';
+                else if (hasCompleted) classes += ' completed';
+                
+                const workoutLabel = isRest ? 'Rest' : (workout.name?.replace('#', '').replace(' ', '') || '');
+                
+                weekHtml += `
+                    <div class="${classes}" onclick="currentDate='${dateStr}';switchPanel('workout')">
+                        <div class="week-day-name">${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()]}</div>
+                        <div class="week-day-num">${d.getDate()}</div>
+                        <div class="week-day-workout">${workoutLabel}</div>
+                    </div>
+                `;
+            }
+            weekGrid.innerHTML = weekHtml;
+            
+            // History list
+            const historyList = document.getElementById('historyList');
+            const logDates = Object.keys(data.gymLog || {}).sort().reverse().slice(0, 14);
+            
+            if (logDates.length === 0) {
+                historyList.innerHTML = '<div class="empty-state"><div class="empty-icon">📅</div>No workout history yet</div>';
+                return;
+            }
+            
+            historyList.innerHTML = logDates.map(date => {
+                const workout = getWorkout(date);
+                const log = data.gymLog[date];
+                const exerciseCount = Object.keys(log).filter(k => k.endsWith('_feeling') && log[k]).length;
+                
+                return `
+                    <div class="history-item" onclick="currentDate='${date}';switchPanel('workout')">
+                        <div class="history-date">${new Date(date + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}</div>
+                        <div class="history-workout">${workout.name || 'Workout'}</div>
+                        <div class="history-summary">${exerciseCount} exercises completed</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ========== MODAL ==========
+        function closeModal() {
+            document.getElementById('detailModal').classList.remove('active');
+        }
+
+        // Initialize
+        init();
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Gym">
+    <meta name="theme-color" content="#1a1a1a">
+    <title>Gym Tracker</title>
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏋️</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --bg: #0a0a0a;
+            --bg-card: #1a1a1a;
+            --bg-input: #252525;
+            --border: #333;
+            --text: #fff;
+            --text-dim: #888;
+            --text-muted: #555;
+            --accent: #22c55e;
+            --accent-dim: #166534;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --safe-top: env(safe-area-inset-top);
+            --safe-bottom: env(safe-area-inset-bottom);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding-top: var(--safe-top);
+            padding-bottom: calc(70px + var(--safe-bottom));
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            background: var(--bg);
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .program-badge {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        .block-badge {
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+
+        .date-nav {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-btn {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg-card);
+            color: var(--text);
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .nav-btn:active {
+            background: var(--bg-input);
+        }
+
+        .date-display {
+            flex: 1;
+            text-align: center;
+        }
+
+        .date-main {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .date-sub {
+            font-size: 13px;
+            color: var(--text-dim);
+            margin-top: 2px;
+        }
+
+        .today-btn {
+            padding: 8px 14px;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            background: transparent;
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .today-btn:active {
+            background: var(--accent-dim);
+        }
+
+        /* Main Content */
+        .content {
+            padding: 16px;
+        }
+
+        /* Workout Card */
+        .workout-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .workout-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text);
+        }
+
+        .workout-meta {
+            font-size: 13px;
+            color: var(--text-dim);
+            margin-bottom: 16px;
+        }
+
+        /* Exercise List */
+        .exercise-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .exercise-item {
+            background: var(--bg-input);
+            border-radius: 12px;
+            padding: 14px;
+        }
+
+        .exercise-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .exercise-name {
+            font-size: 15px;
+            font-weight: 600;
+            flex: 1;
+            color: var(--text);
+        }
+
+        .exercise-prescription {
+            font-size: 12px;
+            color: var(--text-dim);
+            text-align: right;
+        }
+
+        .exercise-notes {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .exercise-input-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .weight-input-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+        }
+
+        .weight-input {
+            width: 80px;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .weight-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .weight-unit {
+            font-size: 13px;
+            color: var(--text-dim);
+        }
+
+        .prev-weight {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .prev-weight.up {
+            color: var(--accent);
+        }
+
+        .prev-weight.down {
+            color: var(--danger);
+        }
+
+        .prev-feeling {
+            display: inline-block;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .prev-feeling.hard {
+            background: rgba(220, 38, 38, 0.2);
+            color: #ef4444;
+        }
+
+        .prev-feeling.okay {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+        }
+
+        .prev-feeling.light {
+            background: rgba(34, 197, 94, 0.2);
+            color: var(--accent);
+        }
+
+        .done-check {
+            min-width: 52px;
+            height: 44px;
+            padding: 0 10px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 11px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .done-check.hard {
+            background: #dc2626;
+            border-color: #dc2626;
+            color: white;
+        }
+
+        .done-check.okay {
+            background: #f59e0b;
+            border-color: #f59e0b;
+            color: white;
+        }
+
+        .done-check.light {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg);
+        }
+
+        /* Rest Day */
+        .rest-day {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .rest-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+
+        .rest-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .rest-message {
+            font-size: 14px;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        /* Body Weight Section */
+        .bodyweight-card {
+            background: linear-gradient(135deg, var(--accent-dim) 0%, var(--bg-card) 100%);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .bodyweight-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .bodyweight-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .bodyweight-date {
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+
+        .bodyweight-input-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .bodyweight-input {
+            width: 100px;
+            padding: 14px;
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .bodyweight-input:focus {
+            outline: none;
+        }
+
+        .bodyweight-trend {
+            flex: 1;
+        }
+
+        .trend-value {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .trend-value.down {
+            color: var(--accent);
+        }
+
+        .trend-value.up {
+            color: var(--warning);
+        }
+
+        .trend-label {
+            font-size: 11px;
+            color: var(--text-dim);
+        }
+
+        .bodyweight-history {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .bw-history-item {
+            min-width: 60px;
+            padding: 10px 8px;
+            background: var(--bg);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .bw-history-date {
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+
+        .bw-history-value {
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        /* Progress Section */
+        .progress-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .progress-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .progress-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .progress-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: var(--bg-input);
+            border-radius: 10px;
+        }
+
+        .progress-exercise {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .progress-change {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .progress-change.positive {
+            color: var(--accent);
+        }
+
+        .progress-change.negative {
+            color: var(--danger);
+        }
+
+        /* Bottom Nav */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            display: flex;
+            padding-bottom: var(--safe-bottom);
+            z-index: 100;
+        }
+
+        .nav-item {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.15s;
+        }
+
+        .nav-item.active {
+            color: var(--accent);
+        }
+
+        .nav-icon {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+        .nav-label {
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        /* Panels */
+        .panel {
+            display: none;
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        /* Week View */
+        .week-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .week-day {
+            padding: 10px 4px;
+            background: var(--bg-input);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .week-day.today {
+            border: 2px solid var(--accent);
+        }
+
+        .week-day.completed {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        .week-day.rest {
+            background: var(--bg);
+            opacity: 0.5;
+        }
+
+        .week-day-name {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .week-day-num {
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+
+        .week-day-workout {
+            font-size: 9px;
+            color: var(--text-dim);
+            margin-top: 2px;
+        }
+
+        .week-day.completed .week-day-workout {
+            color: rgba(0,0,0,0.6);
+        }
+
+        /* History List */
+        .history-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .history-item {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 14px;
+            cursor: pointer;
+        }
+
+        .history-item:active {
+            background: var(--bg-input);
+        }
+
+        .history-date {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .history-workout {
+            font-size: 12px;
+            color: var(--text-dim);
+            margin-top: 4px;
+        }
+
+        .history-summary {
+            font-size: 11px;
+            color: var(--accent);
+            margin-top: 4px;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            align-items: flex-end;
+            z-index: 200;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            width: 100%;
+            max-height: 80vh;
+            border-radius: 20px 20px 0 0;
+            padding: 20px;
+            padding-bottom: calc(20px + var(--safe-bottom));
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: var(--bg-input);
+            border-radius: 50%;
+            color: var(--text);
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-dim);
+        }
+
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-top">
+            <div>
+                <div class="program-badge">DENSITY PROTOCOL</div>
+                <div class="block-badge" id="currentBlock">Block 1 - Primer</div>
+            </div>
+        </div>
+        <div class="date-nav">
+            <button class="nav-btn" onclick="changeDate(-1)">‹</button>
+            <div class="date-display">
+                <div class="date-main" id="dateMain">Monday, Feb 3</div>
+                <div class="date-sub" id="dateSub">Legs #1</div>
+            </div>
+            <button class="nav-btn" onclick="changeDate(1)">›</button>
+            <button class="today-btn" onclick="goToToday()">Today</button>
+        </div>
+    </div>
+
+    <!-- Workout Panel -->
+    <div class="content panel active" id="workoutPanel">
+        <div id="workoutContent"></div>
+        
+        <div class="stats-bar" id="statsBar">
+            <div class="stat">
+                <div class="stat-value" id="setsCompleted">0/0</div>
+                <div class="stat-label">Sets Done</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="sessionTime">~0 min</div>
+                <div class="stat-label">Est. Time</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="weekProgress">0/6</div>
+                <div class="stat-label">This Week</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Weight Panel -->
+    <div class="content panel" id="weightPanel">
+        <div class="bodyweight-card">
+            <div class="bodyweight-header">
+                <div class="bodyweight-title">⚖️ Body Weight</div>
+                <div class="bodyweight-date" id="bwDate">Monday Weigh-in</div>
+            </div>
+            <div class="bodyweight-input-row">
+                <input type="number" class="bodyweight-input" id="bwInput" placeholder="0.0" step="0.1" onchange="saveBodyWeight()">
+                <div>
+                    <div class="weight-unit">lbs</div>
+                </div>
+                <div class="bodyweight-trend">
+                    <div class="trend-value" id="bwTrend">--</div>
+                    <div class="trend-label">vs last week</div>
+                </div>
+            </div>
+            <div class="bodyweight-history" id="bwHistory"></div>
+        </div>
+
+        <div class="progress-card">
+            <div class="progress-title">💪 Lifting Progress (Last 7 Days)</div>
+            <div class="progress-list" id="liftingProgress"></div>
+        </div>
+    </div>
+
+    <!-- History Panel -->
+    <div class="content panel" id="historyPanel">
+        <div class="week-grid" id="weekGrid"></div>
+        <div class="history-list" id="historyList"></div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-item active" onclick="switchPanel('workout')">
+            <div class="nav-icon">🏋️</div>
+            <div class="nav-label">Workout</div>
+        </div>
+        <div class="nav-item" onclick="switchPanel('weight')">
+            <div class="nav-icon">📊</div>
+            <div class="nav-label">Progress</div>
+        </div>
+        <div class="nav-item" onclick="switchPanel('history')">
+            <div class="nav-icon">📅</div>
+            <div class="nav-label">History</div>
+        </div>
+    </div>
+
+    <!-- Detail Modal -->
+    <div class="modal-overlay" id="detailModal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <div class="modal-title" id="modalTitle">Workout Details</div>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // ========== DATA ==========
+        const STORAGE_KEY = 'gym_tracker_data';
+        let data = {
+            gymLog: {},
+            bodyWeight: {}
+        };
+
+        let currentDate = new Date().toISOString().split('T')[0];
+
+        // Program Configuration - DENSITY PROTOCOL
+        const PROGRAM_START = '2026-01-30'; // Friday, Legs #1
+        
+        const GYM_PROGRAM = {
+            blocks: {
+                block1: { name: 'Block 1 - Primer', start: '2026-01-30', end: '2026-02-17', rpe: '7-8' },
+                block2a: { name: 'Block 2 - Intensify', start: '2026-02-18', end: '2026-03-12', rpe: '9-10' },
+                deload: { name: 'Strategic Deload', start: '2026-03-13', end: '2026-03-22' },
+                block2b: { name: 'Block 2 - Peak Push', start: '2026-03-23', end: '2026-03-28', rpe: '10' },
+                polish: { name: 'Polish Phase', start: '2026-03-30', end: '2026-04-19', rpe: '7-8' },
+                peak: { name: 'Peak Display', start: '2026-04-20', end: '2026-05-01' }
+            }
+        };
+        
+        // Rest days (explicit dates)
+        const REST_DAYS = [
+            '2026-02-08', // First rest after 9-day opening push
+            '2026-02-15',
+            '2026-02-22',
+            '2026-03-01',
+            '2026-03-08',
+            '2026-03-29', // After Block 2 Part 2
+        ];
+        
+        // LPPLPP Cycle (0-indexed)
+        const WORKOUT_CYCLE = [
+            { key: 'legs1', name: 'Legs #1' },
+            { key: 'push1', name: 'Push #1' },
+            { key: 'pull1', name: 'Pull #1' },
+            { key: 'legs2', name: 'Legs #2' },
+            { key: 'push2', name: 'Push #2' },
+            { key: 'pull2', name: 'Pull #2' }
+        ];
+
+        // Block 1 Workouts (RPE 7-8)
+        const BLOCK1_WORKOUTS = {
+            legs1: {
+                name: 'Legs #1', time: '75-85 min',
+                exercises: [
+                    { name: 'Standing Calf Raise', sets: 4, reps: '10-12', rpe: 8, rest: '1-2m', notes: 'Pause 1" top+bottom' },
+                    { name: 'Back Squat', sets: 3, reps: '4-6', rpe: '7-8', rest: '3-4m', notes: 'Full depth, controlled' },
+                    { name: 'Paused Back Squat', sets: 2, reps: '5', rpe: '7-8', rest: '3m', notes: '-25% load, 1" pause' },
+                    { name: 'Romanian Deadlift', sets: 3, reps: '8-10', rpe: '7-8', rest: '2-3m', notes: 'Stretch hams, explosive' },
+                    { name: 'Walking DB Lunges', sets: 2, reps: '20 steps', rpe: 8, rest: '2m', notes: 'Control, no momentum' },
+                    { name: 'Seated Leg Curl', sets: 3, reps: '10-12', rpe: 8, rest: '1-2m', notes: 'Slow start, squeeze' },
+                    { name: 'Side Plank', sets: 3, reps: '30-40s', rpe: 8, rest: '1m', notes: 'Each side' }
+                ]
+            },
+            push1: {
+                name: 'Push #1', time: '80-90 min',
+                exercises: [
+                    { name: 'Barbell Bench Press', sets: 3, reps: '4-6', rpe: '7-8', rest: '3-4m', notes: 'Leg drive, explosive' },
+                    { name: 'Bench Press (Legs Up)', sets: 2, reps: '10', rpe: '7-8', rest: '3m', notes: 'Removes leg drive' },
+                    { name: 'Arnold Press', sets: 3, reps: '8-10', rpe: 8, rest: '2-3m', notes: 'Full rotation' },
+                    { name: 'DB Chest Fly', sets: 3, reps: '12-15', rpe: 8, rest: '1-2m', notes: 'Deep stretch' },
+                    { name: 'DB Lateral Raise', sets: 4, reps: '12-15', rpe: 8, rest: '1-2m', notes: 'Constant tension' },
+                    { name: 'Cable Pressdown', sets: 3, reps: '8-10', rpe: 8, rest: '1-2m', notes: 'SS with next' },
+                    { name: 'OH Cable Extension', sets: 3, reps: '10-12', rpe: 8, rest: '1-2m', notes: 'Long head emphasis' }
+                ]
+            },
+            pull1: {
+                name: 'Pull #1', time: '75-85 min',
+                exercises: [
+                    { name: 'Lat Pulldown', sets: 4, reps: '8-10', rpe: '5→8', rest: '2-3m', notes: 'Ramping intensity' },
+                    { name: 'Chest-Supported Row', sets: 3, reps: '10-12', rpe: '7-8', rest: '2-3m', notes: 'Vary grip each set' },
+                    { name: 'Pullover Machine', sets: 3, reps: '10-12', rpe: 8, rest: '1-2m', notes: 'Lat focus + stretch' },
+                    { name: 'Face Pull', sets: 3, reps: '12-15', rpe: 8, rest: '1-2m', notes: '3 heights (L/M/H)' },
+                    { name: 'EZ-Bar Curl', sets: 3, reps: '6-8', rpe: 8, rest: '2m', notes: 'Controlled' },
+                    { name: 'Spider Curl', sets: 2, reps: '10-12', rpe: 8, rest: '1-2m', notes: 'Peak contraction' }
+                ]
+            },
+            legs2: {
+                name: 'Legs #2', time: '80-90 min',
+                exercises: [
+                    { name: 'Conventional Deadlift', sets: 3, reps: '5-7', rpe: '7-8', rest: '3-4m', notes: 'Neural emphasis' },
+                    { name: '45° Leg Press', sets: 4, reps: '10-12', rpe: '7-8', rest: '2-3m', notes: 'Mid-foot placement' },
+                    { name: 'Hip Extension', sets: 2, reps: '8-10', rpe: 8, rest: '1-2m', notes: 'Hamstring bias' },
+                    { name: 'Lying Leg Curl', sets: 3, reps: '10-12', rpe: 8, rest: '1-2m', notes: 'Control negative' },
+                    { name: 'Leg Extension', sets: 3, reps: '10-12', rpe: 8, rest: '1-2m', notes: '4s negative' },
+                    { name: 'Seated Calf Raise', sets: 4, reps: '15-20', rpe: 8, rest: '1-2m', notes: 'Pause bottom' },
+                    { name: 'Cable Crunch', sets: 3, reps: '12-15', rpe: 8, rest: '1-2m', notes: 'Loaded flexion' }
+                ]
+            },
+            push2: {
+                name: 'Push #2', time: '75-85 min',
+                exercises: [
+                    { name: 'Incline Barbell Bench', sets: 3, reps: '8', rpe: '7-8', rest: '3-4m', notes: 'Close grip' },
+                    { name: 'DB Shoulder Press', sets: 3, reps: '10-12', rpe: '7-8', rest: '2-3m', notes: 'Strict form' },
+                    { name: 'EZ French Press', sets: 3, reps: '6-8', rpe: '7-8', rest: '2-3m', notes: 'Floor position' },
+                    { name: 'Pec Deck', sets: 3, reps: '10-12', rpe: 8, rest: '1-2m', notes: 'Full ROM' },
+                    { name: 'Lateral Raise Machine', sets: 3, reps: '5+10', rpe: 8, rest: '1-2m', notes: '5 reps 5s neg' },
+                    { name: 'Front Raise', sets: 2, reps: '15-20', rpe: 8, rest: '1-2m', notes: 'Plate, with rotation' },
+                    { name: 'Diamond Push-ups', sets: 1, reps: 'AMRAP', rpe: 8, rest: '-', notes: 'Near-failure' }
+                ]
+            },
+            pull2: {
+                name: 'Pull #2', time: '70-80 min',
+                exercises: [
+                    { name: 'Single-Arm Lat Pulldown', sets: 3, reps: '12-15', rpe: '7-8', rest: '1-2m', notes: 'Kneeling' },
+                    { name: 'Weighted Pull-ups', sets: 3, reps: 'AMRAP', rpe: 8, rest: '2-3m', notes: 'Wide grip' },
+                    { name: 'Kroc Row', sets: 3, reps: '10-12', rpe: '7-8', rest: '2-3m', notes: 'Straps, controlled' },
+                    { name: 'DB Shrugs', sets: 3, reps: '10-12', rpe: 8, rest: '1-2m', notes: 'Pause top' },
+                    { name: 'Reverse Pec Deck', sets: 3, reps: '10-12', rpe: 8, rest: '1-2m', notes: 'Scapula protracted' },
+                    { name: 'Seated DB Curl', sets: 3, reps: '10-12', rpe: 8, rest: '1-2m', notes: 'Incline bench' }
+                ]
+            }
+        };
+
+        // Block 2 Workouts (RPE 9-10)
+        const BLOCK2_WORKOUTS = {
+            legs1: {
+                name: 'Legs #1', time: '50-60 min',
+                exercises: [
+                    { name: 'Seated Calf Raise', sets: 3, reps: '6-8', rpe: 10, rest: '1-2m' },
+                    { name: 'Back Squat', sets: 1, reps: '3-5', rpe: '8-9', rest: '4m' },
+                    { name: 'Romanian Deadlift', sets: 2, reps: '4-6', rpe: 10, rest: '3m' },
+                    { name: 'Leg Extension', sets: 2, reps: '6-8', rpe: 10, rest: '1-2m' },
+                    { name: 'Cable Crunch', sets: 2, reps: '6-8', rpe: 10, rest: '1-2m' }
+                ]
+            },
+            push1: {
+                name: 'Push #1', time: '45-55 min',
+                exercises: [
+                    { name: 'Barbell Bench Press', sets: 1, reps: '3-5', rpe: '8-9', rest: '4m' },
+                    { name: 'Smith Military Press', sets: 2, reps: '4-6', rpe: 10, rest: '3m' },
+                    { name: 'Lateral Raise Machine', sets: 2, reps: '6-8', rpe: 10, rest: '2m' },
+                    { name: 'OH Cable Extension', sets: 2, reps: '6-8', rpe: 10, rest: '1-2m' },
+                    { name: 'Cable Kickback', sets: 2, reps: '6-8', rpe: 10, rest: '1-2m' }
+                ]
+            },
+            pull1: {
+                name: 'Pull #1', time: '45-55 min',
+                exercises: [
+                    { name: 'Neutral-Grip Pulldown', sets: 3, reps: '4-6', rpe: 10, rest: '3m' },
+                    { name: 'Pendlay Row', sets: 2, reps: '4-6', rpe: 10, rest: '3m' },
+                    { name: 'Reverse Pec Deck', sets: 2, reps: '6-8', rpe: 10, rest: '1-2m' },
+                    { name: 'EZ-Bar Curl', sets: 2, reps: '4-6', rpe: 10, rest: '2m' },
+                    { name: 'Hammer Curl', sets: 1, reps: '4-6', rpe: 10, rest: '1-2m' }
+                ]
+            },
+            legs2: {
+                name: 'Legs #2', time: '50-60 min',
+                exercises: [
+                    { name: 'Standing Calf Raise', sets: 2, reps: '6-8', rpe: '9-10', rest: '2m' },
+                    { name: 'Hack Squat', sets: 2, reps: '4-6', rpe: 10, rest: '3-4m' },
+                    { name: 'Walking DB Lunges', sets: 2, reps: '4-6/leg', rpe: 10, rest: '3m' },
+                    { name: 'Seated Leg Curl', sets: 2, reps: '6-8', rpe: 10, rest: '2m' },
+                    { name: 'Cable Crunch', sets: 2, reps: '6-8', rpe: 10, rest: '1-2m' }
+                ]
+            },
+            push2: {
+                name: 'Push #2', time: '45-55 min',
+                exercises: [
+                    { name: 'DB Overhead Press', sets: 2, reps: '6-8', rpe: 10, rest: '3m' },
+                    { name: 'Weighted Dips', sets: 2, reps: '4-6', rpe: 10, rest: '3m' },
+                    { name: 'DB Lateral Raise', sets: 2, reps: '6-8', rpe: 10, rest: '2m' },
+                    { name: 'Chest Press Machine', sets: 2, reps: '6-8', rpe: 10, rest: '1-2m' },
+                    { name: 'Cable Pushdown', sets: 2, reps: '6-8', rpe: 10, rest: '1-2m' }
+                ]
+            },
+            pull2: {
+                name: 'Pull #2', time: '45-55 min',
+                exercises: [
+                    { name: 'Weighted Pull-ups', sets: 2, reps: '4-6', rpe: 10, rest: '3m' },
+                    { name: 'Narrow Pulley Row', sets: 2, reps: '4-6', rpe: 10, rest: '3m' },
+                    { name: 'DB Shrugs', sets: 2, reps: '4-6', rpe: 10, rest: '2m' },
+                    { name: 'Alternating DB Curl', sets: 2, reps: '4-6', rpe: 10, rest: '2m' },
+                    { name: 'Spider Curl', sets: 1, reps: '6-8', rpe: 10, rest: '1-2m' }
+                ]
+            }
+        };
+        
+        // Polish Phase Workouts (4 days/week: Mon/Tue/Thu/Sat)
+        const POLISH_SCHEDULE = {
+            1: 'legs1',  // Monday
+            2: 'push1',  // Tuesday
+            4: 'pull1',  // Thursday
+            6: 'legs2'   // Saturday
+        };
+
+        // ========== INITIALIZATION ==========
+        function init() {
+            loadData();
+            render();
+        }
+
+        function loadData() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                data = JSON.parse(saved);
             }
         }
 
