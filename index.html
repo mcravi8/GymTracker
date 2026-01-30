@@ -740,7 +740,7 @@
             <div class="bodyweight-input-row">
                 <input type="number" class="bodyweight-input" id="bwInput" placeholder="0.0" step="0.1" onchange="saveBodyWeight()">
                 <div>
-                    <div class="weight-unit">kg</div>
+                    <div class="weight-unit">lbs</div>
                 </div>
                 <div class="bodyweight-trend">
                     <div class="trend-value" id="bwTrend">--</div>
@@ -793,11 +793,108 @@
         // ========== DATA ==========
         const STORAGE_KEY = 'gym_tracker_data';
         let data = {
-            gymLog: {},      // { '2026-01-30': { ex0_weight: 100, ex0_feeling: 'okay', ex0_name: 'Back Squat', ... } }
-            bodyWeight: {}   // { '2026-02-03': 75.5 }
+            gymLog: {},
+            bodyWeight: {}
+        };
+        
+        // Test data for first 9 workouts
+        const TEST_DATA = {
+            gymLog: {
+                // Day 1 - Legs #1 (Jan 30)
+                '2026-01-30': {
+                    ex0_name: 'Standing Calf Raise', ex0_weight: 70, ex0_feeling: 'okay',
+                    ex1_name: 'Back Squat', ex1_weight: 100, ex1_feeling: 'hard',
+                    ex2_name: 'Paused Back Squat', ex2_weight: 75, ex2_feeling: 'hard',
+                    ex3_name: 'Romanian Deadlift', ex3_weight: 80, ex3_feeling: 'okay',
+                    ex4_name: 'Walking DB Lunges', ex4_weight: 20, ex4_feeling: 'okay',
+                    ex5_name: 'Seated Leg Curl', ex5_weight: 45, ex5_feeling: 'light',
+                    ex6_name: 'Side Plank', ex6_weight: 0, ex6_feeling: 'okay'
+                },
+                // Day 2 - Push #1 (Jan 31)
+                '2026-01-31': {
+                    ex0_name: 'Barbell Bench Press', ex0_weight: 80, ex0_feeling: 'okay',
+                    ex1_name: 'Bench Press (Legs Up)', ex1_weight: 60, ex1_feeling: 'hard',
+                    ex2_name: 'Arnold Press', ex2_weight: 20, ex2_feeling: 'okay',
+                    ex3_name: 'DB Chest Fly', ex3_weight: 14, ex3_feeling: 'light',
+                    ex4_name: 'DB Lateral Raise', ex4_weight: 10, ex4_feeling: 'okay',
+                    ex5_name: 'Cable Pressdown', ex5_weight: 25, ex5_feeling: 'okay',
+                    ex6_name: 'OH Cable Extension', ex6_weight: 20, ex6_feeling: 'light'
+                },
+                // Day 3 - Pull #1 (Feb 1)
+                '2026-02-01': {
+                    ex0_name: 'Lat Pulldown', ex0_weight: 60, ex0_feeling: 'okay',
+                    ex1_name: 'Chest-Supported Row', ex1_weight: 35, ex1_feeling: 'okay',
+                    ex2_name: 'Pullover Machine', ex2_weight: 40, ex2_feeling: 'light',
+                    ex3_name: 'Face Pull', ex3_weight: 20, ex3_feeling: 'okay',
+                    ex4_name: 'EZ-Bar Curl', ex4_weight: 30, ex4_feeling: 'hard',
+                    ex5_name: 'Spider Curl', ex5_weight: 10, ex5_feeling: 'okay'
+                },
+                // Day 4 - Legs #2 (Feb 2)
+                '2026-02-02': {
+                    ex0_name: 'Conventional Deadlift', ex0_weight: 120, ex0_feeling: 'hard',
+                    ex1_name: '45° Leg Press', ex1_weight: 180, ex1_feeling: 'okay',
+                    ex2_name: 'Hip Extension', ex2_weight: 50, ex2_feeling: 'okay',
+                    ex3_name: 'Lying Leg Curl', ex3_weight: 40, ex3_feeling: 'okay',
+                    ex4_name: 'Leg Extension', ex4_weight: 55, ex4_feeling: 'light',
+                    ex5_name: 'Seated Calf Raise', ex5_weight: 60, ex5_feeling: 'okay',
+                    ex6_name: 'Cable Crunch', ex6_weight: 35, ex6_feeling: 'light'
+                },
+                // Day 5 - Push #2 (Feb 3)
+                '2026-02-03': {
+                    ex0_name: 'Incline Barbell Bench', ex0_weight: 70, ex0_feeling: 'okay',
+                    ex1_name: 'DB Shoulder Press', ex1_weight: 22, ex1_feeling: 'hard',
+                    ex2_name: 'EZ French Press', ex2_weight: 25, ex2_feeling: 'okay',
+                    ex3_name: 'Pec Deck', ex3_weight: 50, ex3_feeling: 'okay',
+                    ex4_name: 'Lateral Raise Machine', ex4_weight: 30, ex4_feeling: 'okay',
+                    ex5_name: 'Front Raise', ex5_weight: 10, ex5_feeling: 'light',
+                    ex6_name: 'Diamond Push-ups', ex6_weight: 0, ex6_feeling: 'hard'
+                },
+                // Day 6 - Pull #2 (Feb 4)
+                '2026-02-04': {
+                    ex0_name: 'Single-Arm Lat Pulldown', ex0_weight: 30, ex0_feeling: 'okay',
+                    ex1_name: 'Weighted Pull-ups', ex1_weight: 10, ex1_feeling: 'hard',
+                    ex2_name: 'Kroc Row', ex2_weight: 32, ex2_feeling: 'okay',
+                    ex3_name: 'DB Shrugs', ex3_weight: 30, ex3_feeling: 'light',
+                    ex4_name: 'Reverse Pec Deck', ex4_weight: 45, ex4_feeling: 'okay',
+                    ex5_name: 'Seated DB Curl', ex5_weight: 12, ex5_feeling: 'okay'
+                },
+                // Day 7 - Legs #1 cycle 2 (Feb 5)
+                '2026-02-05': {
+                    ex0_name: 'Standing Calf Raise', ex0_weight: 75, ex0_feeling: 'okay',
+                    ex1_name: 'Back Squat', ex1_weight: 105, ex1_feeling: 'okay',
+                    ex2_name: 'Paused Back Squat', ex2_weight: 77.5, ex2_feeling: 'okay',
+                    ex3_name: 'Romanian Deadlift', ex3_weight: 85, ex3_feeling: 'okay',
+                    ex4_name: 'Walking DB Lunges', ex4_weight: 22, ex4_feeling: 'okay',
+                    ex5_name: 'Seated Leg Curl', ex5_weight: 50, ex5_feeling: 'okay',
+                    ex6_name: 'Side Plank', ex6_weight: 0, ex6_feeling: 'okay'
+                },
+                // Day 8 - Push #1 cycle 2 (Feb 6)
+                '2026-02-06': {
+                    ex0_name: 'Barbell Bench Press', ex0_weight: 82.5, ex0_feeling: 'okay',
+                    ex1_name: 'Bench Press (Legs Up)', ex1_weight: 62.5, ex1_feeling: 'okay',
+                    ex2_name: 'Arnold Press', ex2_weight: 22, ex2_feeling: 'okay',
+                    ex3_name: 'DB Chest Fly', ex3_weight: 16, ex3_feeling: 'okay',
+                    ex4_name: 'DB Lateral Raise', ex4_weight: 12, ex4_feeling: 'hard',
+                    ex5_name: 'Cable Pressdown', ex5_weight: 27.5, ex5_feeling: 'okay',
+                    ex6_name: 'OH Cable Extension', ex6_weight: 22.5, ex6_feeling: 'okay'
+                },
+                // Day 9 - Pull #1 cycle 2 (Feb 7)
+                '2026-02-07': {
+                    ex0_name: 'Lat Pulldown', ex0_weight: 65, ex0_feeling: 'okay',
+                    ex1_name: 'Chest-Supported Row', ex1_weight: 37.5, ex1_feeling: 'okay',
+                    ex2_name: 'Pullover Machine', ex2_weight: 45, ex2_feeling: 'okay',
+                    ex3_name: 'Face Pull', ex3_weight: 22.5, ex3_feeling: 'okay',
+                    ex4_name: 'EZ-Bar Curl', ex4_weight: 32.5, ex4_feeling: 'okay',
+                    ex5_name: 'Spider Curl', ex5_weight: 12, ex5_feeling: 'hard'
+                }
+            },
+            bodyWeight: {
+                '2026-01-27': 78.5,
+                '2026-02-03': 78.2
+            }
         };
 
-        let currentDate = new Date().toISOString().split('T')[0];
+        let currentDate = '2026-02-09'; // Set to Feb 9 for testing (Legs #2, after first rest)
 
         // Program Configuration - DENSITY PROTOCOL
         const PROGRAM_START = '2026-01-30'; // Friday, Legs #1
@@ -989,6 +1086,12 @@
             const saved = localStorage.getItem(STORAGE_KEY);
             if (saved) {
                 data = JSON.parse(saved);
+            }
+            // Merge test data if no gym logs exist
+            if (Object.keys(data.gymLog || {}).length === 0) {
+                data.gymLog = { ...TEST_DATA.gymLog };
+                data.bodyWeight = { ...TEST_DATA.bodyWeight };
+                saveData();
             }
         }
 
@@ -1224,14 +1327,14 @@
                 // Previous weight and feeling display
                 let prevHtml = '';
                 if (prev) {
-                    let weightInfo = `Last: ${prev.weight}kg`;
+                    let weightInfo = `Last: ${prev.weight}lbs`;
                     if (savedWeight) {
                         const diff = parseFloat(savedWeight) - parseFloat(prev.weight);
-                        if (diff > 0) weightInfo = `<span class="prev-weight up">↑ +${diff}kg</span>`;
-                        else if (diff < 0) weightInfo = `<span class="prev-weight down">↓ ${diff}kg</span>`;
-                        else weightInfo = `<span class="prev-weight">= ${prev.weight}kg</span>`;
+                        if (diff > 0) weightInfo = `<span class="prev-weight up">↑ +${diff}lbs</span>`;
+                        else if (diff < 0) weightInfo = `<span class="prev-weight down">↓ ${diff}lbs</span>`;
+                        else weightInfo = `<span class="prev-weight">= ${prev.weight}lbs</span>`;
                     } else {
-                        weightInfo = `<span class="prev-weight">Last: ${prev.weight}kg</span>`;
+                        weightInfo = `<span class="prev-weight">Last: ${prev.weight}lbs</span>`;
                     }
                     
                     const feelingBadge = prev.feeling 
@@ -1264,7 +1367,7 @@
                                     placeholder="0"
                                     onchange="saveWeight(${idx}, this.value, '${ex.name}')"
                                     inputmode="decimal">
-                                <span class="weight-unit">kg</span>
+                                <span class="weight-unit">lbs</span>
                             </div>
                             <button class="done-check ${feelingClass}" onclick="cycleFeeling(${idx}, this, '${ex.name}')">
                                 ${feelingText}
@@ -1369,13 +1472,13 @@
                     const diff = (bwValue - data.bodyWeight[prevWeek]).toFixed(1);
                     const trend = document.getElementById('bwTrend');
                     if (diff > 0) {
-                        trend.textContent = `+${diff} kg`;
+                        trend.textContent = `+${diff} lbs`;
                         trend.className = 'trend-value up';
                     } else if (diff < 0) {
-                        trend.textContent = `${diff} kg`;
+                        trend.textContent = `${diff} lbs`;
                         trend.className = 'trend-value down';
                     } else {
-                        trend.textContent = '0 kg';
+                        trend.textContent = '0 lbs';
                         trend.className = 'trend-value';
                     }
                 }
@@ -1389,7 +1492,7 @@
             history.innerHTML = sortedWeeks.map(week => `
                 <div class="bw-history-item">
                     <div class="bw-history-date">${new Date(week + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</div>
-                    <div class="bw-history-value">${data.bodyWeight[week]} kg</div>
+                    <div class="bw-history-value">${data.bodyWeight[week]} lbs</div>
                 </div>
             `).join('');
             
@@ -1404,7 +1507,7 @@
                     <div class="progress-item">
                         <div class="progress-exercise">${p.name}</div>
                         <div class="progress-change ${p.change > 0 ? 'positive' : p.change < 0 ? 'negative' : ''}">
-                            ${p.change > 0 ? '+' : ''}${p.change} kg
+                            ${p.change > 0 ? '+' : ''}${p.change} lbs
                         </div>
                     </div>
                 `).join('');
